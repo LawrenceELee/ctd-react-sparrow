@@ -16,6 +16,13 @@ function App() {
 			<h1>Todo List</h1>
 
 			<ul>
+				{todoList.map( function (item) {
+					return <li key={item.id}>{item.title}</li>;
+				})}
+			</ul>
+
+			<ul>
+				<li> item 1 test </li>
 			</ul>
 
 			{/* and by the way: that's how you do comments in JSX */}
