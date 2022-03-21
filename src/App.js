@@ -16,9 +16,16 @@ function App() {
 			<h1>Todo List</h1>
 
 			<ul>
-				{todoList.map( function (item) {
-					return <li key={item.id}>{item.title}</li>;
-				})}
+				{/* todoList.map( function (e) {
+					return <li key={e.id}>{e.title}</li>;
+				}) */}
+				
+				{/* refactor using fat arrow syntax */}
+				{todoList.map(
+					(e) => {
+						return <li key={e.id}>{e.title}</li>;
+					})
+				}
 			</ul>
 
 			<ul>
