@@ -1,17 +1,14 @@
 import React from 'react';
 
-function TodoListItem(){
+function TodoListItem(props){
 
-	return(
-		{todoList.map(
-			(e) => {
-				return <li>{e.title}</li>;
-			})
+	return (
+		<div>
+			<li>{props.item.title}</li>
+		</div>
+	)
 
-		}
-		{/* why does JSX crash if you add semicolon after the map( ... ) */}
-
-	);
+	/* why does JSX crash if you add semicolon after the map( ... ) */
 }
 
 export default TodoListItem;
