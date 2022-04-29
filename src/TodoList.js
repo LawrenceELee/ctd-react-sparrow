@@ -13,19 +13,7 @@ function TodoList() {
 	return (
 		<div>
 			<ul>
-				{/* todoList.map( function (e) {
-					return <li key={e.id}>{e.title}</li>;
-				}) */}
-				
-				{/* refactor using fat arrow syntax */}
-				{todoList.map(
-					(e) => {
-						return <li key={e.id}>{e.title}</li>;
-					})
-				}
 			</ul>
-
-			{/* and by the way: that's how you do comments in JSX */}
 		</div>
 	)
 }
