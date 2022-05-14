@@ -9,14 +9,13 @@ function AddTodoForm(props){
 	//Add onChange prop equal to handleTitleChange function reference (we will declare this function in the next step)
 	function handleTitleChange(event){
 		const newTodoTitle = event.target.value;
-		//console.log(newTodoTitle);
 		setTodoTitle(newTodoTitle);
 	}
 
 	function handleAddTodo(event){
 		event.preventDefault();
-		let todoTitle = event.target.title.value;
-		console.log(todoTitle);
+		//let todoTitle = event.target.title.value;
+		//console.log(todoTitle);
 		event.target.reset();
 		/* logs input text value into console, but only works when I press "Enter" keyboard. Click the "Add" button does nothing. */
 
