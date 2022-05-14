@@ -5,13 +5,9 @@ import TodoListItem from './TodoListItem';
 //Add props as a parameter to the TodoList functional component
 function TodoList(props) {
 
-	const todoList = [
-		{id: 1, title: "Complete assignment"},
-		{id: 2, title: "Watch video lectures"},
-		{id: 3, title: "Go to mentor sessions"},
-		{id: 4, title: "Do mindset exercises"},
-		{id: 5, title: "Go to sleep"}
-	];
+	//Change todoList to reference props instead of the hard-coded variable
+	//Deleted hard-coded todoList data
+	const todoList = props.todoList;
 
 	return (
 		<div>

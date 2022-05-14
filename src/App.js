@@ -18,7 +18,7 @@ function App() {
 			<AddTodoForm onAddTodo={setNewTodo}/>
 			<p>{newTodo}</p>
 
-			//Pass todoList state as a prop named todoList to the TodoList component
+			{/*Pass todoList state as a prop named todoList to the TodoList component*/}
 			<TodoList todoList={todoList}/>
 
 		</div>
