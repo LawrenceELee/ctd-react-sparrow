@@ -2,7 +2,8 @@ import React from 'react';
 import TodoListItem from './TodoListItem';
 
 
-function TodoList() {
+//Add props as a parameter to the TodoList functional component
+function TodoList(props) {
 
 	const todoList = [
 		{id: 1, title: "Complete assignment"},
