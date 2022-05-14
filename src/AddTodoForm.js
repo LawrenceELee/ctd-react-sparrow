@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 
-function AddTodoForm(props){
+function AddTodoForm( {onAddTodo } ){
 	
 	//Create new state variable named todoTitle with setter setTodoTitle
 	const [todoTitle, setTodoTitle] = useState('');
@@ -18,12 +18,12 @@ function AddTodoForm(props){
 		/* logs input text value into console, but only works when I press "Enter" keyboard. Click the "Add" button does nothing. */
 
 		//Inside handleAddTodo, update the onAddTodo callback prop to pass an Object instead of a String; Object should have the following properties: title and id.
-		props.onAddTodo({
+		onAddTodo({
 			title: todoTitle,
 			id: Date.now()
 		});
 
-		event.target.title.value = '';
+		setTodoTitle("");
 	}
 
 	/*
@@ -35,7 +35,7 @@ function AddTodoForm(props){
 		<div>
 			<form onSubmit={handleAddTodo}>
 				<label htmlFor="todoTitle">Title</label>
-				<input id="todoTitle" name="title" value={props.todoTitle} onChange={handleTitleChange}/>
+				<input id="todoTitle" name="title" value={todoTitle} onChange={handleTitleChange}/>
 				<button type="button">Add</button>
 			</form>
 		</div>

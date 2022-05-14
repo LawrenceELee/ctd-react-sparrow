@@ -3,11 +3,10 @@ import TodoListItem from './TodoListItem';
 
 
 //Add props as a parameter to the TodoList functional component
-function TodoList(props) {
+function TodoList( {todoList} ) {
 
 	//Change todoList to reference props instead of the hard-coded variable
 	//Deleted hard-coded todoList data
-	const todoList = props.todoList;
 
 	return (
 		<div>
