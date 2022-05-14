@@ -14,12 +14,16 @@ function AddTodoForm(props){
 
 	function handleAddTodo(event){
 		event.preventDefault();
-		//let todoTitle = event.target.title.value;
-		//console.log(todoTitle);
-		event.target.reset();
+
 		/* logs input text value into console, but only works when I press "Enter" keyboard. Click the "Add" button does nothing. */
 
-		props.onAddTodo(todoTitle);
+		//Inside handleAddTodo, update the onAddTodo callback prop to pass an Object instead of a String; Object should have the following properties: title and id.
+		props.onAddTodo({
+			title: todoTitle,
+			id: Date.now()
+		});
+
+		event.target.title.value = '';
 	}
 
 	/*
