@@ -13,7 +13,8 @@ function App() {
 	//Define a useEffect React hook with todoList as a dependency
 	useEffect(() => {
 		//Inside the side-effect handler function, save the todoList inside localStorage with the key "savedTodoList"
-		localStorage.setItem("savedTodoList", todoList);
+		localStorage.setItem("savedTodoList", JSON.stringify(todoList));
+		//Update your side-effect function to convert todoList to a string before saving in localStorage by using stringify()
 	}, [todoList] );
 
 	//Declare a new function named addTodo that takes newTodo as a parameter
