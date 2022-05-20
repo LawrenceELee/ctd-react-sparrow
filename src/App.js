@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import TodoList from './TodoList';
 import AddTodoForm from './AddTodoForm';
 
@@ -9,6 +9,12 @@ function App() {
 	
 	//Create new state variable named todoList with setter setTodoList and default value of an empty Array
 	const [todoList, setTodoList] = useState([]);
+
+	//Define a useEffect React hook with todoList as a dependency
+	useEffect(() => {
+		//Inside the side-effect handler function, save the todoList inside localStorage with the key "savedTodoList"
+		localStorage.setItem("savedTodoList", todoList);
+	}, [todoList] );
 
 	//Declare a new function named addTodo that takes newTodo as a parameter
 	function addTodo(newTodo){
