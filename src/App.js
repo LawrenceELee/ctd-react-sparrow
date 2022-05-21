@@ -3,19 +3,25 @@ import {useState, useEffect} from 'react';
 import TodoList from './TodoList';
 import AddTodoForm from './AddTodoForm';
 
-function App() {
-	
+//Creating a custom hook
+//Moved all the hooks into this custom hook
+function useSemiPersistentState(){
+
 	const [newTodo, setNewTodo] = useState('');
 	
-	//Update the default state for todoList to read your "savedTodoList" item from localStorage Hint: localStorage.getItem method
 	const [todoList, setTodoList] = useState( JSON.parse(localStorage.getItem("savedTodoList")) );
 
 	//Define a useEffect React hook with todoList as a dependency
 	useEffect(() => {
-		//Inside the side-effect handler function, save the todoList inside localStorage with the key "savedTodoList"
 		localStorage.setItem("savedTodoList", JSON.stringify(todoList));
-		//Update your side-effect function to convert todoList to a string before saving in localStorage by using stringify()
 	}, [todoList] );
+
+	return [todoList, setTodoList];
+}
+
+function App() {
+	
+	const [todoList, setTodoList] = useSemiPersistentState();
 
 	//Declare a new function named addTodo that takes newTodo as a parameter
 	function addTodo(newTodo){
@@ -25,7 +31,8 @@ function App() {
 
   return (
 
-		<div>
+		//Open /src/App.js and update the JSX to use a Fragment
+		<>
 			<h1>Todo List</h1>
 			{/*Change the value of the onAddTodo prop for AddTodoForm to addTodo*/}
 			<AddTodoForm onAddTodo={addTodo}/>
@@ -33,7 +40,7 @@ function App() {
 			{/*Pass todoList state as a prop named todoList to the TodoList component*/}
 			<TodoList todoList={todoList}/>
 
-		</div>
+		</>
 
   );
 }
