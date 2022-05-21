@@ -7,8 +7,8 @@ function App() {
 	
 	const [newTodo, setNewTodo] = useState('');
 	
-	//Create new state variable named todoList with setter setTodoList and default value of an empty Array
-	const [todoList, setTodoList] = useState([]);
+	//Update the default state for todoList to read your "savedTodoList" item from localStorage Hint: localStorage.getItem method
+	const [todoList, setTodoList] = useState( JSON.parse(localStorage.getItem("savedTodoList")) );
 
 	//Define a useEffect React hook with todoList as a dependency
 	useEffect(() => {
