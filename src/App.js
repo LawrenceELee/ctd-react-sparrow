@@ -23,6 +23,15 @@ function App() {
 	
 	const [todoList, setTodoList] = useSemiPersistentState();
 
+	//Define a new handler function named removeTodo with parameter id
+	function removeTodo(id){
+		const filteredTodoList = todoList.filter( (elmt) => {
+			return id !== elmt.id;
+		});
+
+		setTodoList( filteredTodoList );
+	}
+
 	//Declare a new function named addTodo that takes newTodo as a parameter
 	function addTodo(newTodo){
 		//Call the setTodoList state setter and use the spread operator to pass the existing Objects in the todoList Array along with the newTodo Object
@@ -38,7 +47,8 @@ function App() {
 			<AddTodoForm onAddTodo={addTodo}/>
 
 			{/*Pass todoList state as a prop named todoList to the TodoList component*/}
-			<TodoList todoList={todoList}/>
+			{/*Pass removeTodo as a callback handler prop named onRemoveTodo to the TodoList component*/}
+			<TodoList todoList={todoList} onRemoveTodo={removeTodo} />
 
 		</>
 
