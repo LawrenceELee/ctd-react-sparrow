@@ -1,11 +1,11 @@
 //Declare and export a new functional React component named
 function InputWithLabel(props){
 
-	//Refectoring
+	//Refectoring: use children
 	return (
 		<>
 			<label htmlFor={props.todoTitle}>{props.children}</label>
-			<input id={props.todoTitle} name="title" value={props.todoTitle} onChange={props.handleTitleChange}/>
+			<input id={props.todoTitle} name="title" value={props.todoTitle} onChange={props.handleTitleChange} />
 		</>
 	);
 

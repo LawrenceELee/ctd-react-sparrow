@@ -34,10 +34,11 @@ function AddTodoForm( {onAddTodo } ){
 	*/
 
 	//Pass a label prop to the InputWithLabel component with value "Title"
+	//Refactoring: remove label prop and replace it with open/close tags
 	return (
 		<div>
 			<form onSubmit={handleAddTodo}>
-				<InputWithLabel todoTitle={todoTitle} handleTitleChange={handleTitleChange} label="Title: " />
+				<InputWithLabel todoTitle={todoTitle} handleTitleChange={handleTitleChange}>Title: </InputWithLabel>
 				
 				<button type="submit">Add</button>
 			</form>
