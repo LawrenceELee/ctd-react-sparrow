@@ -3,10 +3,8 @@ import {useState, useEffect} from 'react';
 import TodoList from './TodoList';
 import AddTodoForm from './AddTodoForm';
 
-//Creating a custom hook
-//Moved all the hooks into this custom hook
-function useSemiPersistentState(){
-
+function App() {
+	
 	const [newTodo, setNewTodo] = useState('');
 	
 	const [todoList, setTodoList] = useState( JSON.parse(localStorage.getItem("savedTodoList")) );
@@ -15,13 +13,6 @@ function useSemiPersistentState(){
 	useEffect(() => {
 		localStorage.setItem("savedTodoList", JSON.stringify(todoList));
 	}, [todoList] );
-
-	return [todoList, setTodoList];
-}
-
-function App() {
-	
-	const [todoList, setTodoList] = useSemiPersistentState();
 
 	//Define a new handler function named removeTodo with parameter id
 	function removeTodo(id){
