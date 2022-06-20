@@ -7,6 +7,7 @@ function App() {
 	
 	const [todoList, setTodoList] = useState( JSON.parse(localStorage.getItem("savedTodoList")) );
 
+
 	//Below the todoList state, define a useEffect React hook with an empty dependency list
 	useEffect(() => {
 		//Inside the side-effect handler function, define a new Promise and pass in a callback function with parameters resolve and reject
