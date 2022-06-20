@@ -47,7 +47,9 @@ function App() {
 	//Define a useEffect React hook with todoList as a dependency
 	useEffect(() => {
 		// Inside the second useEffect hook (with todoList dependency), add an if statement to check that isLoading is false before setting localStorage
-		localStorage.setItem("savedTodoList", JSON.stringify(todoList));
+		if( !isLoading ){
+			localStorage.setItem("savedTodoList", JSON.stringify(todoList));
+		}
 	}, [todoList] );
 
 	//Define a new handler function named removeTodo with parameter id
