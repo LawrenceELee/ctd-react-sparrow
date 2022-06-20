@@ -5,13 +5,18 @@ import AddTodoForm from './AddTodoForm';
 
 function App() {
 	
-	const [todoList, setTodoList] = useState( JSON.parse(localStorage.getItem("savedTodoList")) );
+	// Update the default state for todoList to be an empty Array
+	const [todoList, setTodoList] = useState([]);
 
+	// create a new state variable named isLoading with update function named setIsLoading with default value true
+	// QUESTION: why are we using const instead of let here for the state variable? it should be allowed to change.
+	// NEVERMIND: I figured it out, the setter function setIsLoading handles that for us.
+	const [isLoading, setIsLoading] = useState(true);
 
 	//Below the todoList state, define a useEffect React hook with an empty dependency list
 	useEffect(() => {
 		//Inside the side-effect handler function, define a new Promise and pass in a callback function with parameters resolve and reject
-		return new Promise((resolve, reject) => {
+		new Promise((resolve, reject) => {
 
 			//To mimic a loading delay, inside the callback function declare a timeout (hint: setTimeout method) with the following arguments:
 			setTimeout(() => {
@@ -20,17 +25,19 @@ function App() {
 				resolve({
 					//Inside the data object, add a property todoList and set it's value to the initial/default list state (copy from useState hook)
 					//Update the default state for todoList to be an empty Array
-					data: { 
-						todoList: JSON.parse(localStorage.getItem("savedTodoList")) || [], 
-					}
+					data: {
+        		todoList: JSON.parse(localStorage.getItem("savedTodoList")) || [],
+					},
 				});
-
 			}, 2000);
 
 		//Chain a then method to your Promise constructor and pass it a function with parameter result
 		}).then((result) => {
 			//Inside the function, use your state setter to update the list and pass the todoList from your result object
 			setTodoList(result.data.todoList);
+
+			// After setting the todoList state, add another line to set isLoading state to false
+			setIsLoading(false);
 		});
 	});
 
@@ -39,6 +46,7 @@ function App() {
 
 	//Define a useEffect React hook with todoList as a dependency
 	useEffect(() => {
+		// Inside the second useEffect hook (with todoList dependency), add an if statement to check that isLoading is false before setting localStorage
 		localStorage.setItem("savedTodoList", JSON.stringify(todoList));
 	}, [todoList] );
 
