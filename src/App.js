@@ -15,26 +15,27 @@ function App() {
 
 	//Below the todoList state, define a useEffect React hook with an empty dependency list
 	useEffect(() => {
-		//Inside the side-effect handler function, define a new Promise and pass in a callback function with parameters resolve and reject
-		new Promise((resolve, reject) => {
 
-			//To mimic a loading delay, inside the callback function declare a timeout (hint: setTimeout method) with the following arguments:
-			setTimeout(() => {
+		// define template literals up here so that the fetch body isn't as cluttered
+		const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default`;
+		const options = {
+			method: "GET",
+			headers: {
+				Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+			},
+		};
 
-				//Inside the timeout callback function, call the parameter resolve which is a callback function for when the Promise is successful and pass it an Object with property data as a nested empty Object
-				resolve({
-					//Inside the data object, add a property todoList and set it's value to the initial/default list state (copy from useState hook)
-					//Update the default state for todoList to be an empty Array
-					data: {
-        		todoList: JSON.parse(localStorage.getItem("savedTodoList")) || [],
-					},
-				});
-			}, 2000);
+		// Using the Fetch API, create a "GET" request and pass the necessary arguments:
+		fetch(
+			url,
+			options
+		)
+		// Chain a then method to your fetch call and pass it a function that returns the response JSON data
+		.then((response) => response.json())
+		.then((result) => {
 
-		//Chain a then method to your Promise constructor and pass it a function with parameter result
-		}).then((result) => {
-			//Inside the function, use your state setter to update the list and pass the todoList from your result object
-			setTodoList(result.data.todoList);
+			// Update the setToDoList call to reference the new result format (hint: result.records)
+			setTodoList(result.records);
 
 			// After setting the todoList state, add another line to set isLoading state to false
 			setIsLoading(false);

@@ -8,7 +8,9 @@ function TodoListItem( {item, onRemoveTodo} ){
 			{/* Add an onClick prop to the button element and pass a function that calls onRemoveTodo from props with the current item id as an argument */}
 			{/* Note: the onRemoveTodo needs to be wrapped in an anonymous function b/c onClick only accepts handlers */}
 			<li>
-				{item.title}<button type="submit" onClick={() => onRemoveTodo(item.id)} > Remove </button>
+				// Update the todo item title to reference the new object format (hint: todo.fields.Title)
+				// The capital 'T' is important
+				{item.fields.Title}<button type="submit" onClick={() => onRemoveTodo(item.id)} > Remove </button>
 			</li>
 		</div>
 	)
