@@ -2,6 +2,7 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import TodoList from './TodoList';
 import AddTodoForm from './AddTodoForm';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
 	
@@ -70,22 +71,35 @@ function App() {
 
   return (
 
-		//Open /src/App.js and update the JSX to use a Fragment
-		<>
-			{/* Inside the App JSX, create a new paragraph element above TodoList with text "Loading..." */}
-			<h1>Todo List</h1>
-			{/*Change the value of the onAddTodo prop for AddTodoForm to addTodo*/}
-			<AddTodoForm onAddTodo={addTodo}/>
+		<BrowserRouter>
+			<Routes>
 
-			{/* Using a ternary operator inside JSX, if isLoading is true render the loading message, otherwise render the TodoList component */}
-			{ isLoading ?
-				( <p>Loading...</p> ) :
-				( <TodoList todoList={todoList} onRemoveTodo={removeTodo} /> )
-				// QUESTION: Why do we have to wrap the components inside paren? Is there a cleaner way to do this?
-				// JSX can't tell when the closing tag for a component ends?
-			}
+				{/* root route */}
+				<Route 
+					path={"/"} 
+					element={
+						<>
+							{/* Inside the App JSX, create a new paragraph element above TodoList with text "Loading..." */}
+							<h1>Todo List</h1>
+							{/*Change the value of the onAddTodo prop for AddTodoForm to addTodo*/}
+							<AddTodoForm onAddTodo={addTodo}/>
 
-		</>
+							{/* Using a ternary operator inside JSX, if isLoading is true render the loading message, otherwise render the TodoList component */}
+							{ isLoading ?
+								( <p>Loading...</p> ) :
+								( <TodoList todoList={todoList} onRemoveTodo={removeTodo} /> )
+								// QUESTION: Why do we have to wrap the components inside paren? Is there a cleaner way to do this?
+								// JSX can't tell when the closing tag for a component ends?
+							}
+						</>
+					}
+				/>
+
+				{/* new route */}
+				<Route path="/new" element={<h1>New TodoList</h1>} />
+
+			</Routes>
+		</BrowserRouter>
 
   );
 }
