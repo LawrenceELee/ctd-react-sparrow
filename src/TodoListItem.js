@@ -13,7 +13,7 @@ function TodoListItem( {item, onRemoveTodo} ){
 			<li className={style.ListItem}>
 				{ /* Update the todo item title to reference the new object format (hint: todo.fields.Title) */ }
 				{ /* The capital 'T' is important */ }
-				{item.fields.Title}<button type="submit" onClick={() => onRemoveTodo(item.id)} > Remove </button>
+				{item.fields.Title}<button type="submit" onClick={() => onRemoveTodo(item.id)} className={style.btn}> Remove </button>
 			</li>
 		</div>
 	)
