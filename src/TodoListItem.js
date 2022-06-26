@@ -1,4 +1,6 @@
 import React from 'react';
+//Import the default module (as style) from TodoListItem.module.css
+import style from './TodoListItem.module.css';
 
 function TodoListItem( {item, onRemoveTodo} ){
 
@@ -7,7 +9,8 @@ function TodoListItem( {item, onRemoveTodo} ){
 		<div>
 			{/* Add an onClick prop to the button element and pass a function that calls onRemoveTodo from props with the current item id as an argument */}
 			{/* Note: the onRemoveTodo needs to be wrapped in an anonymous function b/c onClick only accepts handlers */}
-			<li>
+			{/*Add a className to the <li> element and set the value as the class from CSS module ({style.ListItem})*/}
+			<li className={style.ListItem}>
 				{ /* Update the todo item title to reference the new object format (hint: todo.fields.Title) */ }
 				{ /* The capital 'T' is important */ }
 				{item.fields.Title}<button type="submit" onClick={() => onRemoveTodo(item.id)} > Remove </button>
