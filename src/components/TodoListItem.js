@@ -22,7 +22,9 @@ function TodoListItem( {item, onRemoveTodo} ){
 	/* why does JSX crash if you add semicolon after the map( ... ) */
 }
 
+/*
 function TodoListItem( {item, onRemoveTodo} ){
+*/
 
 TodoListItem.propTypes = {
 	item: PropTypes.object,
