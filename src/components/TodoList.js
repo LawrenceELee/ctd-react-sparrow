@@ -1,5 +1,6 @@
 import React from 'react';
 import TodoListItem from './TodoListItem';
+import PropTypes from 'prop-types';
 
 
 //Add props as a parameter to the TodoList functional component
@@ -20,5 +21,12 @@ function TodoList( {todoList, onRemoveTodo} ) {
 	);
 }
 
+/*
+function TodoList( {todoList, onRemoveTodo} ) {
+*/
+TodoList.propTypes = {
+	todoList: PropTypes.array,
+	onRemoveTodo: PropTypes.func,
 
+}
 export default TodoList;

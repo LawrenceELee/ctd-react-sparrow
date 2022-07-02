@@ -42,7 +42,7 @@ function App() {
 			// After setting the todoList state, add another line to set isLoading state to false
 			setIsLoading(false);
 		});
-	});
+	}, [isLoading] );
 
 	//Need to review: So what's missing? We are retrieving our list from localStorage but we aren't updating our todoList state with the data so it remains empty. Let's fix that:
 	//I don't see this behavior
