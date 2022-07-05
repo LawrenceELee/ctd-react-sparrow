@@ -26,6 +26,28 @@ function App() {
 	*/
 	const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default?view=Grid%20view&sort[0][field]=Title&sort[0][direction]=asc`;
 
+	function compareTitleDesc( objectA, objectB ){ 
+		if( objectA.fields.Title < objectB.fields.Title ) 	return 1;  
+		if( objectA.fields.Title > objectB.fields.Title ) 	return -1;
+		return 0;
+	}
+
+	function compareOnProperty( objectA, objectB, property ){ 
+		let sortOrder = 1;		//asc by default
+		if(property[0] === "-") {	// use '-' for reverse
+			sortOrder = -1;
+			property = property.substr(1);
+		}
+
+		return function (a,b) {
+			/* next line works with strings and numbers, 
+			 * and you may want to customize it to your needs
+			 */
+			var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+			return result * sortOrder;
+		}
+	}
+
 	//Below the todoList state, define a useEffect React hook with an empty dependency list
 	useEffect(() => {
 
@@ -45,6 +67,11 @@ function App() {
 		// Chain a then method to your fetch call and pass it a function that returns the response JSON data
 		.then((response) => response.json())
 		.then((result) => {
+			//console.log(`result: ${JSON.stringify(result)}`);
+			//console.log(`result records: ${JSON.stringify(result.records)}`);		// array of todos
+			console.log(`result records elmt 0: ${JSON.stringify(result.records[0])}`);
+			//console.log(`title: ${JSON.stringify(result.records[0].fields.Title)}`);
+			result.records.sort(compareTitleDesc);
 
 			// Update the setToDoList call to reference the new result format (hint: result.records)
 			setTodoList(result.records);
