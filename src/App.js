@@ -20,7 +20,7 @@ function App() {
 
 	// sort using airtable using url query params
 	// hint: URL query begins with a question mark (?) and is following by name/value pairs separated by an ampersand (name=value&name=value)
-	const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default?view=Grid%20view`;
+	const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default?view=Grid%20view&sort[0][field]=Title&sort[0][direction]=asc`;
 
 	//Below the todoList state, define a useEffect React hook with an empty dependency list
 	useEffect(() => {
