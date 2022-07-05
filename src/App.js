@@ -32,9 +32,14 @@ function App() {
 		return 0;
 	}
 
+	/* Stretch goals:
+ 		- Create a toggle button so the user can switch between ascending and descending sort order
+  	- Sort by a different field, such as createdTime
+	 */
+
 	function compareOnProperty( objectA, objectB, property ){ 
-		let sortOrder = 1;		//asc by default
-		if(property[0] === "-") {	// use '-' for reverse
+		let sortOrder = 1;					//asc by default
+		if(property[0] === "-") {		// use '-' for reverse order
 			sortOrder = -1;
 			property = property.substr(1);
 		}
@@ -43,7 +48,7 @@ function App() {
 			/* next line works with strings and numbers, 
 			 * and you may want to customize it to your needs
 			 */
-			var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+			let result = (a["fields"][property] < b["fields"][property]) ? -1 : (a["fields"][property] > b["fields"][property]) ? 1 : 0;
 			return result * sortOrder;
 		}
 	}
@@ -72,6 +77,7 @@ function App() {
 			console.log(`result records elmt 0: ${JSON.stringify(result.records[0])}`);
 			//console.log(`title: ${JSON.stringify(result.records[0].fields.Title)}`);
 			result.records.sort(compareTitleDesc);
+			//result.records.sort(compareOnProperty("Title"));
 
 			// Update the setToDoList call to reference the new result format (hint: result.records)
 			setTodoList(result.records);
