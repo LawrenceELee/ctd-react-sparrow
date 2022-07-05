@@ -15,11 +15,13 @@ function App() {
 	// NEVERMIND: I figured it out, the setter function setIsLoading handles that for us.
 	const [isLoading, setIsLoading] = useState(true);
 
+	// define template literals up here so that the fetch body isn't as cluttered
+	const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default`;
+
 	//Below the todoList state, define a useEffect React hook with an empty dependency list
 	useEffect(() => {
 
 		// define template literals up here so that the fetch body isn't as cluttered
-		const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default`;
 		const options = {
 			method: "GET",
 			headers: {
@@ -55,7 +57,7 @@ function App() {
 		}
 	}, [todoList] );
 
-	//Define a new handler function named removeTodo with parameter id
+	//remove is broken for the same reason as addTodo
 	function removeTodo(id){
 		const filteredTodoList = todoList.filter( (elmt) => {
 			return id !== elmt.id;
@@ -64,8 +66,29 @@ function App() {
 		setTodoList( filteredTodoList );
 	}
 
-	//Declare a new function named addTodo that takes newTodo as a parameter
+	//The add button is currently broken because you need to fetch/PUT to airtable,
+	//currently, it is creating something that looks like {"title":"A","id":1656734160274} that doesn't have a Title property
 	function addTodo(newTodo){
+		/*
+		useEffect(() => {
+
+			const options = {
+				method: "PATCH",
+				headers: {
+					Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+				},
+			};
+
+			fetch(
+				url,
+				options
+			)
+			.then((response) => response.json())
+			.then((result) => {
+			});
+		}, [isLoading] );
+		*/
+
 		//Call the setTodoList state setter and use the spread operator to pass the existing Objects in the todoList Array along with the newTodo Object
 		setTodoList([...todoList, newTodo]);
 	}
