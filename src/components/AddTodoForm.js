@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
+import InputWithLabel from './InputWithLabel';
 
 function AddTodoForm( {onAddTodo } ){
 	
@@ -31,16 +33,25 @@ function AddTodoForm( {onAddTodo } ){
 		Add value prop equal to todoTitle from component props
 	  Add onChange prop equal to handleTitleChange function reference (we will declare this function in the next step)
 	*/
+
+	//Pass a label prop to the InputWithLabel component with value "Title"
+	//Refactoring: remove label prop and replace it with open/close tags
 	return (
 		<div>
 			<form onSubmit={handleAddTodo}>
-				<label htmlFor="todoTitle">Title</label>
-				<input id="todoTitle" name="title" value={todoTitle} onChange={handleTitleChange}/>
-				<button type="button">Add</button>
+				<InputWithLabel todoTitle={todoTitle} handleTitleChange={handleTitleChange}>Title: </InputWithLabel>
+				
+				<button type="submit">Add</button>
 			</form>
 		</div>
 	);
 
+}
+
+//Below the AddTodoForm function, define the propTypes property of that function as a new object
+AddTodoForm.propTypes = {
+	//Inside the object, define a property with key onAddTodo (prop name) and value PropTypes.func (function data type)
+	onAddTodo: PropTypes.func,
 }
 
 export default AddTodoForm;
